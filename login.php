@@ -77,13 +77,13 @@
             <div class="toggle-container">
                 <div class="toggle">
                     <div class="toggle-panel toggle-left">
-                        <h1>Welcome Back!</h1>
-                        <p>Enter your personal details to use all of site features</p>
+                        <h1>Selamat Datang!</h1>
+                        <p>Masukkan detail pribadi Anda <br> untuk menggunakan semua fitur situs</p>
                         <button class="hidden" id="login">Sign In</button>
                     </div>
                     <div class="toggle-panel toggle-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Register with your personal details to use all of site features</p>
+                        <h1>Halo, Pengguna!</h1>
+                        <p>Daftar dengan detail pribadi Anda untuk menggunakan semua fitur situs</p>
                         <button class="hidden" id="register">Sign Up</button>
                     </div>
                 </div>
