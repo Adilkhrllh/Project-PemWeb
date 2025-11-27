@@ -1,3 +1,4 @@
+<!-- KONSULTASI ADD -->
 <?php
 session_start();
 if(!isset($_SESSION['id_user']) || $_SESSION['role']!=='user'){
@@ -8,17 +9,14 @@ if(!isset($_SESSION['id_user']) || $_SESSION['role']!=='user'){
 include("../config/koneksi.php");
 $id_user = $_SESSION['id_user'];
 
-// Ambil filter spesialis dan search jika ada
 $filter_spesialis = isset($_GET['spesialis']) ? $_GET['spesialis'] : '';
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Proses form konsultasi
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_konsultasi'])) {
     $id_dokter = mysqli_real_escape_string($koneksi, $_POST['id_dokter']);
     $topik_konsul = mysqli_real_escape_string($koneksi, $_POST['topik_konsul']);
     $pesan_awal = mysqli_real_escape_string($koneksi, $_POST['pesan']);
     
-    // Mulai transaksi
     mysqli_begin_transaction($koneksi);
     
     $sql_konsultasi = "INSERT INTO konsultasi (id_dokter, id_pasien, topik_konsul, status_konsul) 
@@ -26,8 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_konsultasi'])) 
     
     if (mysqli_query($koneksi, $sql_konsultasi)) {
         $id_konsultasi = mysqli_insert_id($koneksi);
-        
-        // Insert pesan awal
+
         $sql_pesan = "INSERT INTO pesan (id_konsultasi, pengirim, pesan) 
                       VALUES ('$id_konsultasi', 'pasien', '$pesan_awal')";
         
@@ -47,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_konsultasi'])) 
     }
 }
 
-// Query dokter dengan filter
 $sql = "SELECT d.id_dokter, d.nama, d.spesialis, d.telp_dokter 
         FROM dokter d 
         JOIN users u ON d.id_user = u.id_user
@@ -65,7 +61,6 @@ $sql .= " ORDER BY d.nama ASC";
 $query = mysqli_query($koneksi, $sql);
 $total_dokter = mysqli_num_rows($query);
 
-// Query untuk daftar spesialis
 $sql_spesialis = "SELECT DISTINCT spesialis FROM dokter ORDER BY spesialis";
 $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
 ?>
@@ -96,11 +91,9 @@ $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
 </div>
 
 <div class="container">
-    <!-- FILTER & SEARCH SECTION -->
     <div class="filter-section">
         <form method="GET" id="filterForm">
             <div class="filter-row">
-                <!-- Filter Spesialis -->
                 <div class="filter-group">
                     <label>Spesialis</label>
                     <select name="spesialis" id="spesialisSelect">
@@ -114,7 +107,6 @@ $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
                     </select>
                 </div>
 
-                <!-- Search Box -->
                 <div class="filter-group">
                     <label>Cari Nama Dokter</label>
                     <div class="search-box">
@@ -134,7 +126,6 @@ $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
         </form>
     </div>
 
-    <!-- Result Info -->
     <?php if ($filter_spesialis !== "" || $search !== "") : ?>
         <div class="result-info">
             <strong>Hasil:</strong> <?= $total_dokter ?> dokter ditemukan
@@ -147,7 +138,6 @@ $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
         </div>
     <?php endif; ?>
 
-    <!-- LIST DOKTER -->
     <?php if ($total_dokter > 0) : ?>
         <?php 
         mysqli_data_seek($query, 0);
@@ -187,7 +177,6 @@ $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
 
 </div>
 
-<!-- MODAL KONSULTASI -->
 <div class="modal" id="konsultasiModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -198,7 +187,6 @@ $result_spesialis = mysqli_query($koneksi, $sql_spesialis);
         <form method="POST">
             <div class="modal-body">
 
-                <!-- Info Dokter -->
                 <div class="doctor-modal-info">
                     <div>
                         <h4 id="modalDokterNama" style="margin:0 0 5px;font-size:18px;"></h4>
@@ -247,14 +235,12 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Close modal saat klik di luar
 document.getElementById('konsultasiModal').addEventListener('click', function(e) {
     if (e.target === this) {
         closeModal();
     }
 });
 
-// Enter key untuk submit
 document.getElementById('searchInput').addEventListener('keypress', function(e) {
     if(e.key === 'Enter') {
         document.getElementById('filterForm').submit();
