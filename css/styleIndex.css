@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background: 
+    linear-gradient(rgba(29, 22, 161, 0.379), rgba(72, 71, 91, 0.196)),
+    url("../image/rumahsakitbantul.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 700px;
+}
+
+.container form{
+    background-color: #fff;
+    background: linear-gradient(to top, #e2e2e2, #9eaee1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.h2-1 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 28px;
+    font-weight: bold;
+    gap: 15px;
+}
+
+.h2-1::before,
+.h2-1::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid #000;
+}
+
+.p2{
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 10px 0 20px;
+}
+
+.p1{
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 10px 0 30px;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container hr{
+    width: 100%;
+    border: none;
+    border-top: 1px solid #000;
+    width: calc(100% - 40px);
+    margin: 0px 0 40px;
+}
+
+.container-form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.artikel{
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.footer{
+    margin-top: 40px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+}
+
+p {
+    text-align: center;
+}
