@@ -1,3 +1,4 @@
+<!-- CHAT.PHP -->
 <?php
 session_start();
 if(!isset($_SESSION['id_user']) || $_SESSION['role']!=='user'){
@@ -14,7 +15,6 @@ if(!isset($_GET['id'])){
 $id_konsultasi = intval($_GET['id']);
 $id_user = $_SESSION['id_user'];
 
-// Pastikan konsultasi milik pasien dan ambil info dokter
 $cek = mysqli_query($koneksi, "SELECT k.*, d.nama as nama_dokter, d.spesialis, k.topik_konsul, k.status_konsul 
                                 FROM konsultasi k 
                                 JOIN dokter d ON k.id_dokter = d.id_dokter
@@ -233,13 +233,10 @@ function loadChat(){
     });
 }
 
-// Load chat pertama kali
 loadChat();
 
-// Polling tiap 2 detik
 setInterval(loadChat, 2000);
 
-// Kirim pesan
 $('#chatForm').submit(function(e){
     e.preventDefault();
     var pesan = $('#pesan').val();
@@ -252,7 +249,6 @@ $('#chatForm').submit(function(e){
     });
 });
 
-// Focus pada input saat halaman load
 $('#pesan').focus();
 </script>
 </body>
